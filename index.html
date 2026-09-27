@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#12141a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Озвучка книг</title>
+<link rel="apple-touch-icon" href="./icon-192.png">
+<style>
+html,body{margin:0;height:100%;background:#12141a;color:#eef1f7;
+  font:400 20px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+main{max-width:560px;margin:0 auto;padding:40px 20px}
+h1{font-size:26px;margin:0 0 16px}
+p{color:#a5adbf;font-size:18px}
+a{display:block;text-align:center;min-height:58px;line-height:58px;margin-top:20px;
+  background:#4f8cff;color:#fff;font-weight:600;font-size:20px;border-radius:14px;
+  text-decoration:none}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<main>
+  <h1>Озвучка книг</h1>
+  <p>Открываю приложение. Если этого не случилось за пару секунд, нажмите кнопку ниже.</p>
+  <a id="go" href="#">Открыть приложение</a>
+  <p id="msg" class="hidden"></p>
+</main>
+<script>
+/* Постоянная ссылка.
+
+   У туннеля адрес меняется при каждом перезапуске. Адрес, который человек
+   положил на экран «Домой», меняться не должен — поэтому он ведёт сюда, а
+   сюда я вписываю текущий адрес приложения. Человек видит один и тот же
+   пункт на экране всегда.
+
+   Вписываю вручную, а не запросом из браузера: браузеры запрещают
+   страницам читать чужие файлы, и попытка узнать адрес сама собой
+   упёрлась бы в запрет. Зато подмена здесь видна сразу: если ссылка
+   устарела, ниже появится, куда идти. */
+const CURRENT = "__APP_URL__";
+
+const go = document.getElementById('go');
+const msg = document.getElementById('msg');
+
+if (CURRENT.indexOf('__') === 0) {
+  msg.classList.remove('hidden');
+  msg.textContent = 'Приложение сейчас обновляется. Напишите боту — пришлю свежую ссылку.';
+  go.href = 'https://vk.com/write-210080256';
+  go.textContent = 'Написать боту';
+} else {
+  go.href = CURRENT;
+  location.replace(CURRENT);
+}
+</script>
+</body>
+</html>
