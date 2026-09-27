@@ -12,5 +12,5 @@ open('index.html', 'w', encoding='utf-8').write(s)
 PY
 git add -A
 git commit -q -m "адрес приложения: $URL" || echo "нечего менять"
-git push -q origin HEAD 2>&1 | tail -2
+git push -q origin main 2>&1 | tail -2
 echo "выложено: $URL"
